@@ -1,0 +1,75 @@
+html, body, div, h1, h2, ul, li,
+p, a {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  font: inherit;
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+body {
+  background-color: #000000;
+}
+#main {
+  width: 100%;
+  height: 31em;
+  background-color: #ffffff;
+  margin-top: 8.5em;
+  border: 1px solid chocolate;
+  padding-left: 100px;
+  min-width: 1200px;
+  position: relative;
+  z-index: 1;
+  /*Min-width, less intutive 
+  property, will accomodate all 
+  Ryu images. If the size of the
+  browser is smaller than the 
+  minimum width, the user will need to
+  scroll!
+  */
+}
+.ryu {
+  float: left;
+  width: 659px;
+  height: 494px;
+}
+.ryu-still, .ryu-ready,
+.ryu-throwing {
+  width: 659px;
+  height: 494px;
+}
+.ryu-ready,
+.ryu-throwing {
+  display: none;
+}
+.ryu-ready {
+  background-image: url('../images/ryu-ready-position.gif');
+}
+
+.ryu-still {
+  background-image: url('../images/ryu-standing-still.png');
+}
+
+.ryu-throwing {
+  background-image: url('../images/ryu-throwing-hadouken.png');
+}
+.hadouken, .ryu-ready, .ryu-still, .ryu-throwing {
+  background-repeat: no-repeat;
+  /*Serves a precaution - we wouldn't want 
+  the background-image to repeat if the div
+  gets bigger. There can only be one Ryu!*/
+}
+.hadouken {
+  background-image: url('../images/hadouken.gif');
+  width: 156px; 
+  height: 90px;
+  display: none;
+  position: absolute;
+  z-index: 10;
+  top: 169px;
+  left: 619px;
+  float: left;
+  /*Left and right properties only work 
+  with absolute or relative positioned 
+  elements!*/
+}
