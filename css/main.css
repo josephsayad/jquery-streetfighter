@@ -55,8 +55,12 @@ img {
   width: 100%;
 }
 .cool-info > p {
-  margin-top: 1.5em;
+  margin-top: 1.2em;
   padding-left: 2em;
+}
+strong {
+  color: #003EFF;
+  text-shadow: 3px 2px 2px #000000;
 }
 .ryu {
   float: left;
