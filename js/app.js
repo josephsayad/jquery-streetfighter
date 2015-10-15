@@ -1,26 +1,37 @@
 $(document).ready(function(){
-
   console.log('Ready!');
+
+  playOpening();
+  console.log('Enter: Street Fighter Logo');
+  $('.sf-logo').delay(1000).fadeIn('600').delay(4000).fadeOut('slow');
+  $('.credits').delay(1000).fadeOut('600').delay(5000).fadeIn('slow').delay(2000).fadeOut('slow');
+  console.log('Enter: Ryu & Instructions');
+  $('.ryu').delay(4500).fadeOut('600').delay(5000).fadeIn('600');
+  $('.instructions').delay(4500).fadeOut('600').delay(5000).fadeIn('600');
 
   $(document).keydown(function(event){
     if (event.which == 88) {
+      console.log('Keydown');
       $('.ryu-still').hide();
-      $('.ryu-cool').show();
       $('.ryu-ready').hide();
+      $('.ryu-throwing').hide();
+      $('.hadouken').hide();
+      $('.ryu-cool').show();
     }
   })
   .keyup(function(event){
     if (event.which == 88) {
+      console.log('Keyup');
       $('.ryu-cool').hide();
+      $('.ryu-ready').hide();
+      $('.ryu-throwing').hide();
+      $('.hadouken').hide();
       $('.ryu-still').show();
     }
   });
 
   $('.ryu').mouseenter(function(){
   	console.log('mouseenter');
-    //if (x is being pressed) {
-    // $('.ryu-ready.hide()')
-    //} else
     $('.ryu-still').hide();
     $('.ryu-ready').show();
   })
@@ -55,4 +66,16 @@ function playHadouken () {
   $('#hadouken-sound')[0].volume = 0.5;
   $('#hadouken-sound')[0].load();
   $('#hadouken-sound')[0].play();
+}
+
+function playOpening () {
+  $('#sf-opening')[0].volume = 0.5;
+  $('#sf-opening')[0].load();
+  $('#sf-opening')[0].play();
+}
+
+function playCoolMusic () {
+  $('#cool-music')[0].volume = 0.5;
+  $('#cool-music')[0].load();
+  $('#cool-music')[0].play();
 }

@@ -20,33 +20,50 @@ body {
   position: relative;
   z-index: 1;
 }
-/*.sf-intro {
-  width: 538px;
+.sf-logo {
+  width: 100%;
   height: 494px;
   float: right;
-  border: 1px solid chocolate;
   display: none;
+  font-family:'Rockwell';
+  font-size: 1.5em;
+  font-weight: bold;
 }
 img {
-  width: 465px;
+  width: 526px;
   display: block;
   margin: 0 auto;
-  border: 1px solid chocolate;
-  padding-top: 1em;
+  padding-top: 3.5em;
+  padding-right: 9em;
 }
-.sf-intro > p {
-  text-align: center;
+.credits {
+  width: 100%;
+  height: 494px;
+  display: none;
 }
-.sf-intro > h1 {
+.credits > p {
+  margin-top: 2em;
+  padding-right: 3em;
+  font-size: 2.8em;
   text-align: center;
-}*/
+  font-family:'Rockwell';
+  font-weight: bold;
+  padding-top: 2em;
+}
+#jQuery-logo {
+  padding-top: 0em;
+  width: 500px;
+  padding-right: 2em;
+  margin-left: 359px;
+  margin-top: -29px;
+}
 .instructions {
   width: 586px;
   height: 462px;
   margin-right: 6.1em;
   margin-top: 5em;
   float: right;
-  display: block;
+  display: none; 
   font-family: 'Rockwell';
   font-size: 1.7em;
   list-style-type: none;
@@ -56,7 +73,6 @@ img {
 }
 .cool-info > p {
   margin-top: 1.2em;
-  padding-left: 2em;
 }
 strong {
   color: #003EFF;
@@ -66,6 +82,7 @@ strong {
   float: left;
   width: 659px;
   height: 494px;
+  display: none;
 }
 .ryu-still, .ryu-ready,
 .ryu-throwing, .ryu-cool {

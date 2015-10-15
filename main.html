@@ -2,23 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>jQuery Street Fighter</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
     <script src="http://code.jquery.com/jquery.min.js"></script>
     <script src="js/app.js"></script>
   </head>
   <body>
-  	<div class="main" id="target">
-<!-- <div class="sf-intro">
-        <img src="images/SF_logo.png" alt="Street Fighter"/>
-        <p>A Presentation by:</p>
-        <h1>Joseph Sayad</h1>
-      </div> -->
-      <!-- <div class="instructions">
-        <p class="trigger-hadouken">Click on Ryu to make him throw a Hadouken.</p>
-        <p class="trigger-cool">Want Ryu to strike a cool pose? Hold down "x" to see him in his prime!</p>
-      </div> -->
+    <div class="main" id="target">
+      <div class="sf-intro">
+        <div class="sf-logo">
+          <img src="images/SF_logo.png" alt="Street Fighter"/>
+        </div>
+        <div class="credits">
+          <p>Production is presented via:</p>
+          <img id="jQuery-logo" src="images/jQuery_logo.png" alt="jQuery"/>
+        </div>
+        <audio id="sf-opening" src="sound/sf2-opening.mp3"/>
+      </div>
       <ul class="instructions">
         <li class="hadouken-info">
           <p>Click on Ryu to make him throw a <strong>Hadouken</strong>.</p>
@@ -27,12 +28,13 @@
           <p>Want Ryu to strike a cool-pose? Hold down "<strong>x</strong>" to see him in his Prime!</p>
         </li>
       </ul>
-  	  <div class="ryu">
-  	    <div class="ryu-still"></div>
-  		  <div class="ryu-ready"></div>
-  		  <div class="ryu-throwing"></div>
+      <div class="ryu">
+        <div class="ryu-still"></div>
+        <div class="ryu-ready"></div>
+        <div class="ryu-throwing"></div>
         <div class="ryu-cool"></div>
         <audio id="hadouken-sound" src="sound/hadouken.mp3"/>
+        <audio id="cool-music" src="sound/epic-music.mp3"/>
       </div>
       <div class="hadouken"></div>
     </div>
