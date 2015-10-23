@@ -1,16 +1,14 @@
 $(document).ready(function() {
-
-  /* Objects are declared and assigned below. The 
-   * purpose of declaring and assigning objects of
-   * type jQuery is to avoid constant invocations of
-   * element nodes from the Document Object Model.
+  /* The purpose of declaring and assigning objects of
+   * type jQuery is to avoid any unnecessary calls to 
+   * element nodes from the Document Object Model
    *
    * ryuStatus is a variable used to implement the 
-   * methods: hide() and show() at appropriate durations 
+   * methods: hide() and show() - at appropriate durations 
    * of user activity. If the user presses the "x" key, 
-   * the correct GIF must be hidden or shown depending on 
-   * the context of the cursor.*/
-
+   * the correct GIF must be hidden or shown - depending on 
+   * the context of the cursor within the environment 
+   */
   var ryuStatus = 'still';
   var ryuStill = $('.ryu-still');
   var ryuReady = $('.ryu-ready')
@@ -19,11 +17,10 @@ $(document).ready(function() {
   var hadouken = $('.hadouken');
   var DEBUG = false;
 
-  /* Switching the value of DEBUG will fire logs or accounts
-   * of the code being executed: useful for debugging.*/
-
+  /* Switching the value of DEBUG will fire logs [accounts]
+   * of the code being executed: useful for debugging
+   */
   if(DEBUG) console.log('Ready!');
-  
   playOpening();
   if(DEBUG) console.log('Enter: Street Fighter Logo');
   $('.sf-logo').delay(1000).fadeIn('600').delay(4000).fadeOut('slow');
@@ -32,9 +29,15 @@ $(document).ready(function() {
   $('.ryu').delay(5500).fadeOut('600').delay(5000).fadeIn('600');
   $('.instructions').delay(5500).fadeOut('600').delay(5000).fadeIn('600');
 
+  /* keydown and keyup event-handlers are invoked by document
+   * because the functionality of these functions are expected 
+   * to be put into play regardless of the user's location on 
+   * the document  
+   */  
   $(document).keydown(function(event) {
     if (event.which == 88) {
       if(DEBUG) console.log('Keydown');
+      // ryuStatus = 'cool';
       pauseOpening();
       ryuStill.hide();
       ryuReady.hide();
@@ -50,9 +53,13 @@ $(document).ready(function() {
       ryuReady.hide();
       ryuThrowing.hide();
       hadouken.hide();
+      //If the cursor is in div.ryu after the user releases the 
+      //"x" key, then ryu-ready-position.gif will be shown
       if (ryuStatus == 'ready') {
         ryuReady.show();
       } 
+      //If the cursor is not in div.ryu after the user releases
+      //the "x" key, then ryu-standing-still.png will be shown
       else if (ryuStatus == 'still') {
         ryuStill.show();
       }
@@ -83,6 +90,8 @@ $(document).ready(function() {
       function() {
         $(this).hide();
         $(this).css('left', '600px');
+        //Hadouken.gif will be moved back to it's original 
+        //location
       }
     )  
   }) 
@@ -94,9 +103,9 @@ $(document).ready(function() {
   });
 });
 
-/* The functions defined below invovle calling audio elements
+/* The functions defined below invovle calling audio element nodes
  * from the HTML, turning them into objects of jQuery, and 
- * invoking apropriate methods. These functions are invoked above.
+ * invoking methods needed for this application.
  */
 function playHadouken () {
   $('#hadouken-sound')[0].volume = 0.5;
