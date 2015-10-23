@@ -1,13 +1,16 @@
 $(document).ready(function() {
   /* The purpose of declaring and assigning objects of
-   * type jQuery is to avoid any unnecessary calls to 
-   * element nodes from the Document Object Model
+   * type jQuery: to avoid all unnecessary calls to element
+   * nodes in the Document Object Model
    *
-   * ryuStatus is a variable used to implement the 
-   * methods: hide() and show() - at appropriate durations 
-   * of user activity. If the user presses the "x" key, 
-   * the correct GIF must be hidden or shown - depending on 
-   * the context of the cursor within the environment 
+   * ryuStatus and coolStatus are variables used to implement
+   * specific methods at the disgression of user-activity. 
+   * coolStatus implemented in bug-fix: div.ryu-ready and div.
+   * ryu-still will not appear when the user is pressing down 
+   * on the "x" key
+   *
+   * Switching the value of DEBUG will fire accounts or checks
+   * of the code being executed: useful for debugging
    */
   var ryuStatus = 'still';
   var coolStatus = 'notCool';
@@ -20,28 +23,17 @@ $(document).ready(function() {
   var DEBUG = false;
   var coolSound = false;
 
-  /* Switching the value of DEBUG will fire logs [accounts]
-   * of the code being executed: useful for debugging
-   */
-  if(DEBUG) console.log('Ready!');
-  playOpening();
-  if(DEBUG) console.log('Enter: Street Fighter Logo');
-  $('.sf-logo').delay(1000).fadeIn('600').delay(4000).fadeOut('slow');
-  $('.jQuery-credits').delay(1000).fadeOut('600').delay(5000).fadeIn('slow').delay(3000).fadeOut('slow');
-  if(DEBUG) console.log('Enter: Ryu & Instructions');
-  ryu.delay(5500).fadeOut('600').delay(5000).fadeIn('600');
-  $('.instructions').delay(5500).fadeOut('600').delay(5000).fadeIn('600');
+  streetfighterOpening();
 
-  /* keydown and keyup event-handlers are invoked by document
-   * because the functionality of these functions are expected 
-   * to be put into play regardless of the user's location on 
-   * the document  
+  /* keydown and keyup event-handlers are invoked by the 
+   * document: functionality of these event-handlers are 
+   * extended to the HTML document as a whole
    */  
   $(document).keydown(function(event) {
     if (event.which == 88) {
       if(DEBUG) console.log('Keydown');
       coolStatus = 'cool';
-      // playCoolMusic();
+      playCoolMusic();
       ryuReady.hide();
       ryuThrowing.hide();
       hadouken.hide();
@@ -58,13 +50,9 @@ $(document).ready(function() {
       hadouken.hide();
       ryuStill.hide();
       ryuCool.hide();
-      //If the cursor is in div.ryu after the user releases the 
-      //"x" key, then ryu-ready-position.gif will be shown
       if (ryuStatus == 'ready') {
         ryuReady.show();
       } 
-      //If the cursor is not in div.ryu after the user releases
-      //the "x" key, then ryu-standing-still.png will be shown
       else if (ryuStatus == 'still') {
         ryuStill.show();
       }
@@ -81,6 +69,8 @@ $(document).ready(function() {
     else if (coolStatus == 'notCool'){
       ryuReady.show();
     }
+    //these conditional statements will inhibit div.ryu-ready
+    //from showing if the user is pressing down on "x"
   })
   .mouseleave(function() {
     ryuStatus = 'still';
@@ -92,6 +82,8 @@ $(document).ready(function() {
     else if (coolStatus == 'notCool') {
       ryuStill.show();
     }
+    //these conditional statements will inhibit div.ryu-still
+    //from showing if the user is pressing down on "x"
   })
   .mousedown(function() {
     if(DEBUG) console.log('mousedown');
@@ -105,8 +97,9 @@ $(document).ready(function() {
       function() {
         $(this).hide();
         $(this).css('left', '600px');
-        //Hadouken.gif will be moved back to it's original location
       }
+      //Hadouken.gif will be moved back to it's original 
+      //location
     )  
   }) 
   .mouseup (function() {
@@ -117,10 +110,17 @@ $(document).ready(function() {
   });
 });
 
-/* The functions defined below invovle calling audio element nodes
- * from the HTML, turning them into objects of jQuery, and 
- * invoking methods needed for this application.
- */
+function streetfighterOpening() {
+  var DEBUG = false;
+  if(DEBUG) console.log('Ready!');
+  playOpening();
+  if(DEBUG) console.log('Enter: Logo, Credits, Ryu, & Instructions');
+  $('.sf-logo').delay(1000).fadeIn('600').delay(4000).fadeOut('slow');
+  $('.jQuery-credits').delay(1000).fadeOut('600').delay(5000).fadeIn('slow').delay(3000).fadeOut('slow');
+  $('.ryu').delay(5500).fadeOut('600').delay(5000).fadeIn('600');
+  $('.instructions').delay(5500).fadeOut('600').delay(5000).fadeIn('600');
+}
+
 function playHadouken () {
   $('#hadouken-sound')[0].volume = 0.5;
   $('#hadouken-sound')[0].load();
@@ -141,6 +141,9 @@ function pauseOpening () {
 
 function playCoolMusic () {
   coolSound = true;
+  //if the user presses down on "x," coolSound will
+  //be assigned to true and this conditional will be
+  //executed
   if (coolSound) {
     pauseOpening();
     $('#cool-music')[0].volume = 0.5;
