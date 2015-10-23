@@ -33,7 +33,7 @@ $(document).ready(function() {
     if (event.which == 88) {
       if(DEBUG) console.log('Keydown');
       coolStatus = 'cool';
-      playCoolMusic();
+      // playCoolMusic();
       ryuReady.hide();
       ryuThrowing.hide();
       hadouken.hide();
@@ -108,7 +108,7 @@ $(document).ready(function() {
     ryuReady.show();
     $('.instructions').fadeIn('slow');
   });
-});
+  });
 
 function streetfighterOpening() {
   var DEBUG = false;
