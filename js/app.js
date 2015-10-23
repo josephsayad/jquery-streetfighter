@@ -31,7 +31,7 @@ $(document).ready(function() {
    */  
   $(document).keydown(function(event) {
     if (event.which == 88) {
-      if(DEBUG) console.log('Keydown');
+      if (DEBUG) console.log('Keydown');
       coolStatus = 'cool';
       // playCoolMusic();
       ryuReady.hide();
@@ -43,7 +43,7 @@ $(document).ready(function() {
   })
   .keyup(function(event) {
     if (event.which == 88) {
-      if(DEBUG) console.log('Keyup');
+      if (DEBUG) console.log('Keyup');
       coolStatus = 'notCool';
       ryuReady.hide();
       ryuThrowing.hide();
@@ -60,7 +60,7 @@ $(document).ready(function() {
   });
 
   ryu.mouseenter(function() {
-    if(DEBUG) console.log('mouseenter');
+    if (DEBUG) console.log('mouseenter');
     ryuStatus = 'ready';
     ryuStill.hide();
     if (coolStatus == 'cool') {
@@ -74,7 +74,7 @@ $(document).ready(function() {
   })
   .mouseleave(function() {
     ryuStatus = 'still';
-    if(DEBUG) console.log('mouseleave');
+    if (DEBUG) console.log('mouseleave');
     ryuReady.hide();
     if (coolStatus == 'cool') {
       ryuStill.hide();
@@ -86,7 +86,7 @@ $(document).ready(function() {
     //from showing if the user is pressing down on "x"
   })
   .mousedown(function() {
-    if(DEBUG) console.log('mousedown');
+    if (DEBUG) console.log('mousedown');
     playHadouken();
     ryuReady.hide();
     $('.instructions').hide();
@@ -103,7 +103,7 @@ $(document).ready(function() {
     )  
   }) 
   .mouseup (function() {
-    if(DEBUG) console.log('mouseup');
+    if (DEBUG) console.log('mouseup');
     ryuThrowing.hide();
     ryuReady.show();
     $('.instructions').fadeIn('slow');
@@ -112,34 +112,34 @@ $(document).ready(function() {
 
 function streetfighterOpening() {
   var DEBUG = false;
-  if(DEBUG) console.log('Ready!');
+  if (DEBUG) console.log('Ready!');
   playOpening();
-  if(DEBUG) console.log('Enter: Logo, Credits, Ryu, & Instructions');
+  if (DEBUG) console.log('Enter: Logo, Credits, Ryu, & Instructions');
   $('.sf-logo').delay(1000).fadeIn('600').delay(4000).fadeOut('slow');
   $('.jQuery-credits').delay(1000).fadeOut('600').delay(5000).fadeIn('slow').delay(3000).fadeOut('slow');
   $('.ryu').delay(5500).fadeOut('600').delay(5000).fadeIn('600');
   $('.instructions').delay(5500).fadeOut('600').delay(5000).fadeIn('600');
 }
 
-function playHadouken () {
+function playHadouken() {
   $('#hadouken-sound')[0].volume = 0.5;
   $('#hadouken-sound')[0].load();
   $('#hadouken-sound')[0].play();
 }
 
-function playOpening () {
+function playOpening() {
   $('#sf-opening')[0].volume = 0.5;
   $('#sf-opening')[0].load();
   $('#sf-opening')[0].play();
 }
 
-function pauseOpening () {
+function pauseOpening() {
   $('#sf-opening')[0].volume = 0.5;
   $('#sf-opening')[0].load();
   $('#sf-opening')[0].pause();
 }
 
-function playCoolMusic () {
+function playCoolMusic() {
   coolSound = true;
   //if the user presses down on "x," coolSound will
   //be assigned to true and this conditional will be
@@ -152,7 +152,7 @@ function playCoolMusic () {
   }
 }
 
-function pauseCoolMusic () {
+function pauseCoolMusic() {
   $('#cool-music')[0].volume = 0.5;
   $('#cool-music')[0].load();
   $('#cool-music')[0].pause();
