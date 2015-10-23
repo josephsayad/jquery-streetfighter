@@ -1,3 +1,5 @@
+var DEBUG = false;
+
 $(document).ready(function() {
   /* The purpose of declaring and assigning objects of
    * type jQuery: to avoid all unnecessary calls to element
@@ -20,8 +22,6 @@ $(document).ready(function() {
   var ryuThrowing = $('.ryu-throwing');
   var hadouken = $('.hadouken');
   var ryuCool = $('.ryu-cool');
-  var DEBUG = false;
-  var coolSound = false;
 
   streetfighterOpening();
 
@@ -33,7 +33,8 @@ $(document).ready(function() {
     if (event.which == 88) {
       if (DEBUG) console.log('Keydown');
       coolStatus = 'cool';
-      // playCoolMusic();
+      pauseOpening();
+      playCoolMusic();
       ryuReady.hide();
       ryuThrowing.hide();
       hadouken.hide();
@@ -50,6 +51,8 @@ $(document).ready(function() {
       hadouken.hide();
       ryuStill.hide();
       ryuCool.hide();
+      $('#cool-music')[0].pause();
+      $('#cool-music')[0].load();
       if (ryuStatus == 'ready') {
         ryuReady.show();
       } 
@@ -86,32 +89,35 @@ $(document).ready(function() {
     //from showing if the user is pressing down on "x"
   })
   .mousedown(function() {
-    if (DEBUG) console.log('mousedown');
-    playHadouken();
-    ryuReady.hide();
-    $('.instructions').hide();
-    ryuThrowing.show();
-    hadouken.finish().show().animate(
-      {'left': '1040px'},
-      500,
-      function() {
-        $(this).hide();
-        $(this).css('left', '600px');
-      }
-      //Hadouken.gif will be moved back to it's original 
-      //location
-    )  
+    if (coolStatus == 'notCool') {
+      if (DEBUG) console.log('mousedown');
+      playHadouken();
+      ryuReady.hide();
+      $('.instructions').hide();
+      ryuThrowing.show();
+      hadouken.finish().show().animate(
+        {'left': '1040px'},
+        500,
+        function() {
+          $(this).hide();
+          $(this).css('left', '600px');
+        }
+        //Hadouken.gif will be moved back to it's original 
+        //location
+      )  
+    }
   }) 
   .mouseup (function() {
-    if (DEBUG) console.log('mouseup');
-    ryuThrowing.hide();
-    ryuReady.show();
-    $('.instructions').fadeIn('slow');
+    if (coolStatus == 'notCool') {
+      if (DEBUG) console.log('mouseup');
+      ryuThrowing.hide();
+      ryuReady.show();
+      $('.instructions').fadeIn('slow');
+    }
   });
-  });
+});
 
 function streetfighterOpening() {
-  var DEBUG = false;
   if (DEBUG) console.log('Ready!');
   playOpening();
   if (DEBUG) console.log('Enter: Logo, Credits, Ryu, & Instructions');
@@ -139,15 +145,14 @@ function pauseOpening() {
   $('#sf-opening')[0].pause();
 }
 
+var coolSound = false;
 function playCoolMusic() {
-  coolSound = true;
+  coolSound = !coolSound;
   //if the user presses down on "x," coolSound will
   //be assigned to true and this conditional will be
   //executed
   if (coolSound) {
-    pauseOpening();
     $('#cool-music')[0].volume = 0.5;
-    $('#cool-music')[0].load();
     $('#cool-music')[0].play();
   }
 }
